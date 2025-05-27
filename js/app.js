@@ -2,9 +2,6 @@ import { LoveStorageManager } from './utils/storage.js';
 import { PWAManager } from './utils/pwa.js';
 
 
-console.log('Imported LoveStorageManager:', typeof LoveStorageManager); // Should be "function"
-console.log('Imported PWAManager:', typeof PWAManager);    
-
 
 // Main App JavaScript
 export class CosmicLoveApp {
@@ -560,4 +557,3 @@ document.addEventListener("visibilitychange", () => {
 
 
 );
-
