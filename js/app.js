@@ -31,7 +31,6 @@ export class CosmicLoveApp {
     this.startDayCounter();
     this.pwa.init();
     this.handleOfflineMode();
-    this.setupInstallPrompt();
     this.setupAudioControls();
     // Hide loading screen after initialization
     setTimeout(() => {
