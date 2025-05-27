@@ -1,0 +1,168 @@
+/* Responsive Design */
+
+/* Mobile First Approach */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 0.5rem;
+  }
+  
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .analytics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .fab-container {
+    bottom: calc(80px + var(--safe-area-inset-bottom));
+  }
+  
+  .install-buttons, .update-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem 0.5rem;
+  }
+  
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-card {
+    padding: 1rem;
+  }
+  
+  .love-counter-card {
+    padding: 1.5rem;
+  }
+  
+  .nav-container {
+    padding: 0 0.5rem;
+  }
+  
+  .nav-text {
+    font-size: 0.6rem;
+  }
+  
+  .toast {
+    margin: 0 0.5rem;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    max-width: 1200px;
+    padding: 2rem;
+  }
+  
+  .quick-actions {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .analytics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Enhanced Touch Targets */
+@media (pointer: coarse) {
+  .nav-item,
+  .action-card,
+  .btn-primary,
+  .btn-secondary,
+  .fab,
+  .fab-item {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Landscape Mode */
+@media (orientation: landscape) and (max-height: 500px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .love-counter-card {
+    padding: 1rem;
+  }
+  
+  .counter-display {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}
+
+/* PWA Standalone Mode */
+@media (display-mode: standalone) {
+  .install-prompt {
+    display: none !important;
+  }
+  
+  body {
+    padding-top: 0;
+  }
+  
+  .header {
+    padding-top: 2rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --bg-glass: rgba(255, 255, 255, 0.9);
+    --bg-glass-strong: rgba(255, 255, 255, 0.95);
+    --text-light: #000;
+    --text-secondary: #333;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .loading-screen,
+  .install-prompt,
+  .update-prompt,
+  .main-nav,
+  .fab-container,
+  .audio-controls,
+  .toast-container {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .main-content {
+    padding: 0 !important;
+  }
+}
