@@ -2,6 +2,9 @@ import { LoveStorageManager } from './utils/storage.js';
 import { PWAManager } from './utils/pwa.js';
 
 
+console.log('Imported LoveStorageManager:', typeof LoveStorageManager); // Should be "function"
+console.log('Imported PWAManager:', typeof PWAManager);    
+
 
 // Main App JavaScript
 export class CosmicLoveApp {
@@ -459,7 +462,50 @@ export class CosmicLoveApp {
       });
     }
   }
+setupAudioControls() {
+  const musicToggle = document.getElementById("musicToggle");
+  const volumeSlider = document.getElementById("volumeSlider");
+  const backgroundMusic = this.backgroundMusic;
 
+  // Mute toggle
+  if (musicToggle) {
+    musicToggle.addEventListener("click", () => {
+      if (backgroundMusic.muted) {
+        backgroundMusic.muted = false;
+        musicToggle.innerHTML = '<span class="music-icon">🎵</span>';
+      } else {
+        backgroundMusic.muted = true;
+        musicToggle.innerHTML = '<span class="music-icon">🔇</span>';
+      }
+    });
+  }
+
+  // Volume control
+  if (volumeSlider && backgroundMusic) {
+    volumeSlider.addEventListener("input", () => {
+      backgroundMusic.volume = volumeSlider.value;
+    });
+  }
+
+  // Play music on first user interaction
+  const enableMusic = () => {
+    backgroundMusic.volume = volumeSlider?.value || 0.3;
+
+    backgroundMusic.play().catch(e => {
+      console.warn("Auto-play failed:", e);
+      // Optional: Show toast message if autoplay fails
+      this.showToast("Tap again to start the music.", "info");
+    });
+
+    // Remove event listeners once played
+    document.body.removeEventListener("click", enableMusic);
+    document.body.removeEventListener("touchstart", enableMusic);
+  };
+
+  // Add event listeners to trigger music play
+  document.body.addEventListener("click", enableMusic);
+  document.body.addEventListener("touchstart", enableMusic, { passive: true });
+}
   // Toast notifications
   showToast(message, type = "info", duration = 3000) {
     const container = document.getElementById("toastContainer");
@@ -557,3 +603,4 @@ document.addEventListener("visibilitychange", () => {
 
 
 );
+
