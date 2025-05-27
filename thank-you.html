@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Log</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Our Love Log 📖</h2>
+  <p>Every moment we share is precious. Here’s a little memory board:</p>
+
+  <ul class="log-list">
+    <li>✨ First visit: <span id="firstVisit">Not recorded yet</span></li>
+    <li>🌙 Last accessed: <span id="lastVisit">Now</span></li>
+    <li>🌠 Dream submitted: <span id="dreamTime">Not yet</span></li>
+    <li>💌 Confessions: <span id="confessionCount">0</span></li>
+  </ul>
+
+  <button onclick="clearLog()">Reset Memories</button>
+
+  <script>
+    // Track first visit
+    let firstVisit = localStorage.getItem("firstVisit");
+    if (!firstVisit) {
+      firstVisit = new Date().toLocaleString();
+      localStorage.setItem("firstVisit", firstVisit);
+    }
+    document.getElementById("firstVisit").textContent = firstVisit;
+
+    // Update last visit
+    const lastVisit = new Date().toLocaleString();
+    localStorage.setItem("lastVisit", lastVisit);
+    document.getElementById("lastVisit").textContent = lastVisit;
+
+    // Load dream timestamp
+    const dreamTime = localStorage.getItem("userDream") || "Not yet";
+    document.getElementById("dreamTime").textContent = dreamTime;
+
+    // Dummy confessions count
+    const confessionCount = localStorage.getItem("confessionCount") || 0;
+    document.getElementById("confessionCount").textContent = confessionCount;
+
+    function clearLog() {
+      localStorage.clear();
+      alert("Memories have been reset.");
+      location.reload();
+    }
+  </script>
+</body>
+</html>

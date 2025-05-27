@@ -1,0 +1,105 @@
+{
+  "name": "Cosmic Love - Digital Love Story",
+  "short_name": "CosmicLove",
+  "description": "A beautiful progressive web app celebrating love with interactive features, confessions, quizzes, dreams, and cherished memories under the stars",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F0F23",
+  "theme_color": "#FFD166",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["lifestyle", "entertainment", "social"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='72' height='72' rx='16' fill='%23FFD166'/%3E%3Cpath d='M36 50.35l-7.25-6.6C21.2 37.68 16 33.14 16 27.25 16 22.71 19.71 19 24.25 19c2.61 0 5.11 1.215 6.75 3.135C32.64 20.215 35.14 19 37.75 19 42.29 19 46 22.71 46 27.25c0 5.89-5.2 10.43-12.75 17.5L36 50.35z' fill='%230F0F23'/%3E%3C/svg%3E",
+      "sizes": "72x72",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='96' height='96' rx='20' fill='%23FFD166'/%3E%3Cpath d='M48 66.35l-9.67-8.8C29.6 50.24 24 45.52 24 38.5 24 33.42 28.42 29 33.5 29c3.48 0 6.82 1.62 9 4.18C44.68 30.62 48.02 29 51.5 29 56.58 29 61 33.42 61 38.5c0 7.02-5.6 11.74-14.33 19.05L48 66.35z' fill='%230F0F23'/%3E%3C/svg%3E",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg width='128' height='128' viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='128' height='128' rx='28' fill='%23FFD166'/%3E%3Cpath d='M64 85.35l-12.9-11.73C38.13 62.48 32 57.36 32 49.5 32 43.42 37.42 38 43.5 38c4.64 0 9.09 2.16 12 5.58C58.41 40.16 62.86 38 67.5 38 73.58 38 79 43.42 79 49.5c0 7.86-6.13 12.98-19.1 24.12L64 85.35z' fill='%230F0F23'/%3E%3C/svg%3E",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg width='192' height='192' viewBox='0 0 192 192' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='192' height='192' rx='40' fill='%23FFD166'/%3E%3Cpath d='M96 149.35l-19.33-17.6C58 115.72 48 108.28 48 97.5 48 87.42 56.42 79 66.5 79c6.96 0 13.64 3.24 18 8.37C88.86 82.24 95.54 79 102.5 79 112.58 79 121 87.42 121 97.5c0 10.78-10 18.22-28.67 34.25L96 149.35z' fill='%230F0F23'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='512' height='512' rx='104' fill='%23FFD166'/%3E%3Cpath d='M256 405.35l-51.56-46.93C149.33 316.59 128 295.41 128 261.5 128 227.42 155.42 200 189.5 200c18.61 0 36.41 8.64 48 22.32C249.09 208.64 266.89 200 285.5 200 319.58 200 347 227.42 347 261.5c0 33.91-21.33 55.09-76.44 97.92L256 405.35z' fill='%230F0F23'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg width='192' height='192' viewBox='0 0 192 192' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='192' height='192' rx='40' fill='%23FFD166'/%3E%3Cpath d='M96 149.35l-19.33-17.6C58 115.72 48 108.28 48 97.5 48 87.42 56.42 79 66.5 79c6.96 0 13.64 3.24 18 8.37C88.86 82.24 95.54 79 102.5 79 112.58 79 121 87.42 121 97.5c0 10.78-10 18.22-28.67 34.25L96 149.35z' fill='%230F0F23'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg width='360' height='640' viewBox='0 0 360 640' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='360' height='640' fill='%230F0F23'/%3E%3Crect x='20' y='60' width='320' height='560' rx='20' fill='%231A1A3A'/%3E%3Ctext x='180' y='120' font-family='Arial, sans-serif' font-size='24' fill='%23FFD166' text-anchor='middle'%3ECosmic Love%3C/text%3E%3Cpath d='M180 170.35l-7.25-6.6C165.2 157.68 160 153.14 160 147.25 160 142.71 163.71 139 168.25 139c2.61 0 5.11 1.215 6.75 3.135C176.64 140.215 179.14 139 181.75 139 186.29 139 190 142.71 190 147.25c0 5.89-5.2 10.43-12.75 17.5L180 170.35z' fill='%23FFD166'/%3E%3Crect x='40' y='260' width='280' height='60' rx='30' fill='%23FFD1FF'/%3E%3Ctext x='180' y='295' font-family='Arial, sans-serif' font-size='16' fill='%230F0F23' text-anchor='middle'%3EStart Love Quiz%3C/text%3E%3Crect x='40' y='340' width='280' height='60' rx='30' fill='%23FFD1FF'/%3E%3Ctext x='180' y='375' font-family='Arial, sans-serif' font-size='16' fill='%230F0F23' text-anchor='middle'%3EShare Confession%3C/text%3E%3Crect x='40' y='420' width='280' height='60' rx='30' fill='%23FFD1FF'/%3E%3Ctext x='180' y='455' font-family='Arial, sans-serif' font-size='16' fill='%230F0F23' text-anchor='middle'%3EDream Together%3C/text%3E%3C/svg%3E",
+      "sizes": "360x640",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Cosmic Love Mobile View"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg width='1024' height='768' viewBox='0 0 1024 768' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1024' height='768' fill='%230F0F23'/%3E%3Crect x='50' y='50' width='924' height='668' rx='20' fill='%231A1A3A'/%3E%3Ctext x='512' y='120' font-family='Arial, sans-serif' font-size='48' fill='%23FFD166' text-anchor='middle'%3ECosmic Love - Desktop View%3C/text%3E%3Cpath d='M512 244.35l-19.33-17.6C474 210.72 464 203.28 464 192.5 464 182.42 472.42 174 482.5 174c6.96 0 13.64 3.24 18 8.37C504.86 177.24 511.54 174 518.5 174 528.58 174 537 182.42 537 192.5c0 10.78-10 18.22-28.67 34.25L512 244.35z' fill='%23FFD1FF'/%3E%3Crect x='100' y='300' width='200' height='150' rx='15' fill='%23FFD1FF'/%3E%3Ctext x='200' y='340' font-family='Arial, sans-serif' font-size='18' fill='%230F0F23' text-anchor='middle'%3ELove Quiz%3C/text%3E%3Crect x='350' y='300' width='200' height='150' rx='15' fill='%23FFD1FF'/%3E%3Ctext x='450' y='340' font-family='Arial, sans-serif' font-size='18' fill='%230F0F23' text-anchor='middle'%3EConfessions%3C/text%3E%3Crect x='600' y='300' width='200' height='150' rx='15' fill='%23FFD1FF'/%3E%3Ctext x='700' y='340' font-family='Arial, sans-serif' font-size='18' fill='%230F0F23' text-anchor='middle'%3EDreams%3C/text%3E%3C/svg%3E",
+      "sizes": "1024x768",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "Cosmic Love Desktop View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Love Quiz",
+      "short_name": "Quiz",
+      "description": "Start a love quiz",
+      "url": "/?page=quiz",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='96' height='96' rx='20' fill='%23FFD166'/%3E%3Ctext x='48' y='60' font-family='Arial, sans-serif' font-size='40' fill='%230F0F23' text-anchor='middle'%3E%3F%3F%3C/text%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Confessions",
+      "short_name": "Confess",
+      "description": "Share your thoughts",
+      "url": "/?page=confessions",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='96' height='96' rx='20' fill='%23FFD166'/%3E%3Ctext x='48' y='65' font-family='Arial, sans-serif' font-size='40' fill='%230F0F23' text-anchor='middle'%3E💭%3C/text%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confession Box</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Whisper Your Heart 💭</h2>
+  <p>Write something you've always wanted to say...</p>
+  <form id="confessionForm">
+    <textarea placeholder="Type your secret here..." rows="6" required></textarea>
+    <button type="submit">Send to Stars</button>
+  </form>
+
+  <div id="confessionSent" class="result" style="display:none;">
+    🪐 Your confession has floated into the cosmos... and back to me.
+  </div>
+
+  <script>
+    document.getElementById("confessionForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const confession = e.target.querySelector('textarea').value;
+  
+  // Store confession count
+  let count = localStorage.getItem("confessionCount") || 0;
+  count = parseInt(count) + 1;
+  localStorage.setItem("confessionCount", count);
+  
+  // Store the actual confession (last 5)
+  let confessions = JSON.parse(localStorage.getItem("confessions") || []);
+  confessions.push({
+    text: confession,
+    date: new Date().toLocaleString()
+  });
+  
+  // Keep only last 5 confessions
+  if (confessions.length > 5) confessions = confessions.slice(-5);
+  
+  localStorage.setItem("confessions", JSON.stringify(confessions));
+  
+  document.getElementById("confessionSent").style.display = "block";
+  e.target.reset();
+});
+  </script>
+</body>
+</html>

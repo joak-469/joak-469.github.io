@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Design Our Future</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Design Our Future Together 🌌</h2>
+  <form id="futureForm">
+    <label>
+      Where should we live?
+      <input type="text" placeholder="e.g., Under the stars in Bali 🏝️" required/>
+    </label>
+    <label>
+      What kind of home?
+      <input type="text" placeholder="e.g., A cozy cottage or space station? 🚀" required/>
+    </label>
+    <label>
+      Dream job for both of us:
+      <input type="text" placeholder="e.g., Writing love songs & stargazing" required/>
+    </label>
+    <label>
+      Something unforgettable we’ll do together:
+      <textarea placeholder="e.g., Dance under the Milky Way 💫"></textarea>
+    </label>
+    <button type="submit">Save Our Dream</button>
+  </form>
+
+  <div id="dreamSaved" class="result" style="display:none;">
+    ✨ Your dream future has been saved forever.
+  </div>
+
+  <script>
+    document.getElementById("futureForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      localStorage.setItem("userDream", new Date().toLocaleString());
+      document.getElementById("dreamSaved").style.display = "block";
+    });
+  </script>
+</body>
+</html>

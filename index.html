@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Our Cosmic Love - Enhanced PWA</title>
+  
+  <!-- Enhanced PWA Meta Tags -->
+  <meta name="description" content="A beautiful progressive web app celebrating love with interactive features, confessions, quizzes, dreams, and memories">
+  <meta name="theme-color" content="#0B1D51">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Cosmic Love">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Cosmic Love">
+  <meta name="msapplication-TileColor" content="#0B1D51">
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <!-- Enhanced Security -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%23FFD166'/><text x='90' y='130' font-size='100' text-anchor='middle'>💖</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Fonts with enhanced loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Our Cosmic Love",
+    "description": "A beautiful progressive web app celebrating love",
+    "url": "https://yourusername.github.io/cosmic-love",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Enhanced Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+      <div class="heart-loader">💖</div>
+      <h2>Loading our cosmic love...</h2>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <p class="loading-tip" id="loadingTip">Preparing your love story...</p>
+    </div>
+  </div>
+
+  <!-- Enhanced Install Prompt -->
+  <div id="installPrompt" class="install-prompt hidden">
+    <div class="install-content">
+      <div class="install-icon">📱</div>
+      <h3>Install Our Love App</h3>
+      <p>Add to your home screen for the best experience with offline access!</p>
+      <div class="install-features">
+        <div class="feature">🔒 Works offline</div>
+        <div class="feature">📱 Native app feel</div>
+        <div class="feature">🚀 Faster loading</div>
+      </div>
+      <div class="install-buttons">
+        <button id="installBtn" class="btn-primary">Install Now</button>
+        <button id="dismissInstall" class="btn-secondary">Maybe Later</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Available Notification -->
+  <div id="updatePrompt" class="update-prompt hidden">
+    <div class="update-content">
+      <div class="update-icon">🔄</div>
+      <h3>Update Available</h3>
+      <p>A new version of our love app is ready!</p>
+      <div class="update-buttons">
+        <button id="updateBtn" class="btn-primary">Update Now</button>
+        <button id="dismissUpdate" class="btn-secondary">Later</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app hidden">
+    <!-- Enhanced Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1 class="main-title">Our Cosmic Love</h1>
+        <p class="subtitle">✨ "Tujh mein rab dikhta hai..." under the stars ✨</p>
+        <div class="multilingual-quotes">
+          <p class="quote-text" id="rotatingQuote">പ്രേമം ദിവ്യമാണ് • الحب إلهي • Love is Divine</p>
+        </div>
+      </div>
+      
+      <!-- Enhanced Status Bar -->
+      <div class="status-bar">
+        <div class="connection-status online">
+          <span class="status-dot"></span>
+          <span class="status-text">Connected</span>
+        </div>
+        <div class="love-meter">
+          <span class="love-icon">💕</span>
+          <span class="love-percentage">100%</span>
+        </div>
+        <div class="theme-toggle">
+          <button id="themeToggle" class="theme-btn" title="Toggle theme">🌙</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Enhanced Navigation with haptic feedback -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <a href="#home" class="nav-item active" data-page="home">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-text">Home</span>
+          <span class="nav-badge hidden" id="homeBadge">0</span>
+        </a>
+        <a href="#quiz" class="nav-item" data-page="quiz">
+          <span class="nav-icon">💕</span>
+          <span class="nav-text">Quiz</span>
+          <span class="nav-badge hidden" id="quizBadge">0</span>
+        </a>
+        <a href="#confess" class="nav-item" data-page="confess">
+          <span class="nav-icon">💭</span>
+          <span class="nav-text">Confess</span>
+          <span class="nav-badge hidden" id="confessBadge">0</span>
+        </a>
+        <a href="#dreams" class="nav-item" data-page="dreams">
+          <span class="nav-icon">🌌</span>
+          <span class="nav-text">Dreams</span>
+          <span class="nav-badge hidden" id="dreamsBadge">0</span>
+        </a>
+        <a href="#memories" class="nav-item" data-page="memories">
+          <span class="nav-icon">📸</span>
+          <span class="nav-text">Memories</span>
+          <span class="nav-badge hidden" id="memoriesBadge">0</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Enhanced Home Page -->
+      <section id="home" class="page active">
+        <div class="welcome-section">
+          <!-- Enhanced Love Counter -->
+          <div class="love-counter-card">
+            <h3>Our Journey</h3>
+            <div class="counter-display" id="daysCounter">0</div>
+            <p class="counter-label">Days of cosmic love</p>
+            <div class="counter-details">
+              <div class="time-breakdown">
+                <span id="hoursCount">0</span> hours
+                <span id="minutesCount">0</span> minutes
+              </div>
+            </div>
+            <div class="counter-animation">
+              <span class="floating-heart">💖</span>
+              <span class="floating-star">✨</span>
+              <span class="floating-heart">💫</span>
+            </div>
+          </div>
+          
+          <!-- Enhanced Quick Actions -->
+          <div class="quick-actions">
+            <div class="action-card" data-action="daily-love">
+              <div class="action-icon">💌</div>
+              <h4>Daily Love Note</h4>
+              <p>Send a sweet message</p>
+              <div class="action-streak">Streak: <span id="loveStreak">0</span></div>
+            </div>
+            <div class="action-card" data-action="mood-tracker">
+              <div class="action-icon">😊</div>
+              <h4>Mood Check</h4>
+              <p>How are you feeling?</p>
+              <div class="action-status" id="moodStatus">Not set today</div>
+            </div>
+            <div class="action-card" data-action="photo-memory">
+              <div class="action-icon">📷</div>
+              <h4>Capture Moment</h4>
+              <p>Add a memory</p>
+              <div class="action-count">Today: <span id="todayMemories">0</span></div>
+            </div>
+            <div class="action-card" data-action="love-generator">
+              <div class="action-icon">💝</div>
+              <h4>Love Generator</h4>
+              <p>Random love quote</p>
+              <div class="action-refresh">Tap to refresh</div>
+            </div>
+          </div>
+
+          <!-- Enhanced Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-number" id="confessionCount">0</span>
+              <span class="stat-label">Confessions</span>
+              <span class="stat-icon">💭</span>
+              <div class="stat-trend">+<span id="confessionTrend">0</span> this week</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="quizScore">0</span>
+              <span class="stat-label">Best Quiz Score</span>
+              <span class="stat-icon">🏆</span>
+              <div class="stat-trend">Last: <span id="lastQuizScore">0</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="memoriesCount">0</span>
+              <span class="stat-label">Memories</span>
+              <span class="stat-icon">📸</span>
+              <div class="stat-trend">+<span id="memoriesTrend">0</span> this month</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="dreamCount">0</span>
+              <span class="stat-label">Dreams</span>
+              <span class="stat-icon">🌟</span>
+              <div class="stat-trend">Latest: <span id="latestDream">None</span></div>
+            </div>
+          </div>
+
+          <!-- Enhanced Love Challenge -->
+          <div class="love-challenge">
+            <h3>💝 Weekly Love Challenge</h3>
+            <div class="challenge-card" id="weeklyChallenge">
+              <p class="challenge-text">Send an unexpected compliment today</p>
+              <div class="challenge-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" id="challengeProgress" style="width: 0%"></div>
+                </div>
+                <span class="progress-text">0/7 days completed</span>
+              </div>
+              <button class="challenge-btn">Mark Complete</button>
+            </div>
+          </div>
+
+          <!-- New: Love Analytics -->
+          <div class="love-analytics">
+            <h3>📊 Love Analytics</h3>
+            <div class="analytics-grid">
+              <div class="analytics-item">
+                <div class="analytics-icon">📈</div>
+                <div class="analytics-data">
+                  <span class="analytics-number" id="weeklyActivity">0</span>
+                  <span class="analytics-label">Weekly Activity</span>
+                </div>
+              </div>
+              <div class="analytics-item">
+                <div class="analytics-icon">🔥</div>
+                <div class="analytics-data">
+                  <span class="analytics-number" id="currentStreak">0</span>
+                  <span class="analytics-label">Day Streak</span>
+                </div>
+              </div>
+              <div class="analytics-item">
+                <div class="analytics-icon">⭐</div>
+                <div class="analytics-data">
+                  <span class="analytics-number" id="totalPoints">0</span>
+                  <span class="analytics-label">Love Points</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Quiz Page -->
+      <section id="quiz" class="page">
+        <div class="page-header">
+          <h2>💕 How Well Do You Know Us?</h2>
+          <p>Test your knowledge about our love story</p>
+          <div class="quiz-stats">
+            <div class="stat-box">
+              <span class="stat-value" id="bestScore">0/10</span>
+              <span class="stat-label">Best Score</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value" id="quizAttempts">0</span>
+              <span class="stat-label">Attempts</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value" id="averageScore">0%</span>
+              <span class="stat-label">Average</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="quiz-container">
+          <div class="quiz-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="quizProgress"></div>
+            </div>
+            <span class="progress-text">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span></span>
+            <div class="quiz-timer">
+              <span class="timer-icon">⏱️</span>
+              <span id="quizTimer">00:00</span>
+            </div>
+          </div>
+
+          <form id="quizForm" class="quiz-form">
+            <!-- Enhanced Questions with animations -->
+            <div class="question-card active" data-question="1">
+              <div class="question-header">
+                <span class="question-number">1</span>
+                <div class="question-difficulty">Easy</div>
+              </div>
+              <h3>What's our favorite song to dance to?</h3>
+              <div class="options">
+                <label class="option">
+                  <input type="radio" name="q1" value="tujh-mein-rab">
+                  <span class="option-text">Tujh Mein Rab Dikhta Hai</span>
+                  <span class="option-icon">🎵</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="q1" value="perfect">
+                  <span class="option-text">Perfect by Ed Sheeran</span>
+                  <span class="option-icon">🎶</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="q1" value="thinking-out-loud">
+                  <span class="option-text">Thinking Out Loud</span>
+                  <span class="option-icon">🎤</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-card" data-question="2">
+              <div class="question-header">
+                <span class="question-number">2</span>
+                <div class="question-difficulty">Medium</div>
+              </div>
+              <h3>Where did we first meet?</h3>
+              <div class="options">
+                <label class="option">
+                  <input type="radio" name="q2" value="coffee-shop">
+                  <span class="option-text">A cozy coffee shop</span>
+                  <span class="option-icon">☕</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="q2" value="under-stars">
+                  <span class="option-text">Under the stars</span>
+                  <span class="option-icon">⭐</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="q2" value="online">
+                  <span class="option-text">In the digital cosmos</span>
+                  <span class="option-icon">💻</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-card" data-question="3">
+              <div class="question-header">
+                <span class="question-number">3</span>
+                <div class="question-difficulty">Hard</div>
+              </div>
+              <h3>What's my favorite thing about you?</h3>
+              <div class="options">
+                <label class="option">
+                  <input type="radio" name="q3" value="smile">
+                  <span class="option-text">Your radiant smile</span>
+                  <span class="option-icon">😊</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="q3" value="laugh">
+                  <span class="option-text">Your infectious laugh</span>
+                  <span class="option-icon">😄</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="q3" value="everything">
+                  <span class="option-text">Everything about you</span>
+                  <span class="option-icon">💖</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-navigation">
+              <button type="button" id="prevQuestion" class="btn-secondary" disabled>
+                <span>← Previous</span>
+              </button>
+              <div class="quiz-hints">
+                <button type="button" id="hintBtn" class="btn-hint">💡 Hint</button>
+                <span class="hints-remaining">3 hints left</span>
+              </div>
+              <button type="button" id="nextQuestion" class="btn-primary">
+                <span>Next →</span>
+              </button>
+              <button type="submit" id="submitQuiz" class="btn-primary hidden">
+                <span>✨ Submit Quiz</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Enhanced Quiz Result -->
+          <div id="quizResult" class="quiz-result hidden">
+            <div class="result-content">
+              <div class="result-animation">
+                <div class="celebration-stars">⭐✨🌟💫⭐</div>
+              </div>
+              <div class="result-score">
+                <span class="score-number" id="finalScore">0</span>
+                <span class="score-total">/10</span>
+              </div>
+              <h3 id="resultTitle">Amazing!</h3>
+              <p id="resultMessage">You know us so well!</p>
+              <div class="result-details">
+                <div class="detail-item">
+                  <span class="detail-label">Time taken:</span>
+                  <span class="detail-value" id="timeTaken">0:00</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Accuracy:</span>
+                  <span class="detail-value" id="accuracy">0%</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Points earned:</span>
+                  <span class="detail-value" id="pointsEarned">0</span>
+                </div>
+              </div>
+              <div class="result-actions">
+                <button id="shareQuiz" class="btn-primary">📤 Share Result</button>
+                <button id="retakeQuiz" class="btn-secondary">🔄 Try Again</button>
+                <button id="reviewAnswers" class="btn-secondary">📝 Review</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Confession Page -->
+      <section id="confess" class="page">
+        <div class="page-header">
+          <h2>💭 Whisper Your Heart</h2>
+          <p>Share your deepest thoughts and feelings</p>
+          <div class="confession-stats">
+            <div class="stat-box">
+              <span class="stat-value" id="totalConfessions">0</span>
+              <span class="stat-label">Total Whispers</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value" id="thisWeekConfessions">0</span>
+              <span class="stat-label">This Week</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="confession-container">
+          <form id="confessionForm" class="confession-form">
+            <div class="form-group">
+              <label>
+                What's on your heart?
+                <textarea 
+                  id="confessionText" 
+                  placeholder="Type your secret, dream, or feeling here..." 
+                  rows="6" 
+                  required
+                  maxlength="500"
+                ></textarea>
+              </label>
+              <div class="char-counter">
+                <span id="charCount">0</span>/500
+                <div class="writing-tips">
+                  <button type="button" class="tip-btn" data-tip="gratitude">💝 Gratitude</button>
+                  <button type="button" class="tip-btn" data-tip="dream">🌟 Dream</button>
+                  <button type="button" class="tip-btn" data-tip="memory">📸 Memory</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <fieldset class="mood-selector enhanced">
+                <legend>How are you feeling?</legend>
+                
+                <label class="mood-option">
+                  <input type="radio" id="happy" name="mood" value="happy">
+                  😊 Happy
+                </label>
+                
+                <label class="mood-option">
+                  <input type="radio" id="love" name="mood" value="love">
+                  😍 In Love
+                </label>
+                
+                <label class="mood-option">
+                  <input type="radio" id="thoughtful" name="mood" value="thoughtful">
+                  🤔 Thoughtful
+                </label>
+                
+                <label class="mood-option">
+                  <input type="radio" id="dreamy" name="mood" value="dreamy">
+                  😌 Dreamy
+                </label>
+                
+                <label class="mood-option">
+                  <input type="radio" id="grateful" name="mood" value="grateful">
+                  🙏 Grateful
+                </label>
+                
+                <label class="mood-option">
+                  <input type="radio" id="excited" name="mood" value="excited">
+                  🤩 Excited
+                </label>
+              </fieldset>
+            </div>
+
+            <div class="form-group">
+              <div class="confession-options">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="anonymous"> 
+                  <span class="checkmark"></span>
+                  Keep this confession anonymous
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="favorite"> 
+                  <span class="checkmark"></span>
+                  Mark as favorite
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="reminder"> 
+                  <span class="checkmark"></span>
+                  Remind me in a year
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary btn-full">
+              <span class="btn-icon">🌟</span>
+              Send to the Stars
+            </button>
+          </form>
+
+          <!-- Enhanced Confession Result -->
+          <div id="confessionSent" class="confession-result hidden">
+            <div class="result-animation">
+              <div class="floating-hearts">
+                <span>💖</span>
+                <span>✨</span>
+                <span>🌟</span>
+                <span>💫</span>
+                <span>💕</span>
+              </div>
+            </div>
+            <h3>Your confession has been sent to the cosmos!</h3>
+            <p>It's now floating among the stars, safe and cherished forever.</p>
+            <div class="confession-actions">
+              <button id="newConfession" class="btn-secondary">Write Another</button>
+              <button id="shareConfession" class="btn-primary">Share Anonymously</button>
+              <button id="exportConfessions" class="btn-secondary">📤 Export All</button>
+            </div>
+          </div>
+
+          <!-- Enhanced Recent Confessions -->
+          <div class="recent-confessions">
+            <div class="confessions-header">
+              <h3>🌙 Recent Whispers</h3>
+              <div class="confession-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="favorites">❤️</button>
+                <button class="filter-btn" data-filter="this-week">This Week</button>
+              </div>
+            </div>
+            <div id="confessionsList" class="confessions-list">
+              <!-- Confessions will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Dreams Page -->
+      <section id="dreams" class="page">
+        <div class="page-header">
+          <h2>🌌 Design Our Future Together</h2>
+          <p>Let's dream and plan our beautiful future</p>
+          <div class="dreams-inspiration">
+            <button id="dreamInspiration" class="inspiration-btn">✨ Get Inspiration</button>
+          </div>
+        </div>
+
+        <div class="dreams-container">
+          <form id="dreamsForm" class="dreams-form">
+            <div class="form-section">
+              <h3>🏠 Our Dream Home</h3>
+              <div class="form-group">
+                <label for="dreamLocation">Where should we live?</label>
+                <input 
+                  type="text" 
+                  id="dreamLocation"
+                  placeholder="e.g., Under the stars in Bali 🏝️" 
+                  required
+                />
+                <div class="suggestions" id="locationSuggestions">
+                  <button type="button" class="suggestion-btn">🏝️ Tropical Paradise</button>
+                  <button type="button" class="suggestion-btn">🏔️ Mountain Retreat</button>
+                  <button type="button" class="suggestion-btn">🌊 Coastal Haven</button>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="dreamHome">What kind of home?</label>
+                <input 
+                  type="text" 
+                  id="dreamHome"
+                  placeholder="e.g., A cozy cottage with a garden 🌸" 
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>💼 Our Dream Careers</h3>
+              <div class="form-group">
+                <label for="dreamJob">Dream job for both of us:</label>
+                <input 
+                  type="text" 
+                  id="dreamJob"
+                  placeholder="e.g., Writing love songs & stargazing 🎵" 
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>✨ Our Adventures</h3>
+              <div class="form-group">
+                <label for="dreamAdventure">Something unforgettable we'll do:</label>
+                <textarea 
+                  id="dreamAdventure"
+                  placeholder="e.g., Dance under the Milky Way 💫"
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>👨‍👩‍👧‍👦 Our Family Dreams</h3>
+              <div class="form-group">
+                <label for="familyDreams">Our family vision:</label>
+                <textarea 
+                  id="familyDreams"
+                  placeholder="e.g., Two kids, a dog, and lots of laughter 👶🐕"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>🌍 Travel Dreams</h3>
+              <div class="form-group">
+                <label for="travelDreams">Places we want to explore:</label>
+                <textarea 
+                  id="travelDreams"
+                  placeholder="e.g., Northern Lights in Iceland, Beaches in Maldives ✈️"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>💰 Financial Dreams</h3>
+              <div class="form-group">
+                <label for="financialGoals">Our financial goals:</label>
+                <textarea 
+                  id="financialGoals"
+                  placeholder="e.g., Save for our dream home, travel fund, retirement 💰"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary btn-full">
+              <span class="btn-icon">💫</span>
+              Save Our Dreams
+            </button>
+          </form>
+
+          <!-- Enhanced Dream Result -->
+          <div id="dreamSaved" class="dream-result hidden">
+            <div class="result-animation">
+              <div class="twinkling-stars">
+                <span>⭐</span>
+                <span>✨</span>
+                <span>🌟</span>
+                <span>💫</span>
+                <span>🌠</span>
+              </div>
+            </div>
+            <h3>Our dreams have been written in the stars!</h3>
+            <p>The universe is conspiring to make them come true.</p>
+            <div class="dream-actions">
+              <button id="viewDreams" class="btn-primary">View Our Dreams</button>
+              <button id="shareDreams" class="btn-secondary">Share Dreams</button>
+              <button id="createVisionBoard" class="btn-secondary">🎨 Vision Board</button>
+            </div>
+          </div>
+
+          <!-- Enhanced Saved Dreams -->
+          <div id="savedDreams" class="saved-dreams hidden">
+            <div class="dreams-header">
+              <h3>✨ Our Saved Dreams</h3>
+              <div class="dreams-actions">
+                <button id="exportDreams" class="btn-secondary">📤 Export</button>
+                <button id="printDreams" class="btn-secondary">🖨️ Print</button>
+              </div>
+            </div>
+            <div id="dreamsList" class="dreams-list">
+              <!-- Dreams will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Memories Page -->
+      <section id="memories" class="page">
+        <div class="page-header">
+          <h2>📸 Our Memory Lane</h2>
+          <p>Capture and cherish our beautiful moments</p>
+        </div>
+
+        <div class="memories-container">
+          <div class="memory-actions">
+            <button id="addMemory" class="btn-primary">
+              <span class="btn-icon">📷</span>
+              Add Memory
+            </button>
+            <button id="addNote" class="btn-secondary">
+              <span class="btn-icon">📝</span>
+              Add Note
+            </button>
+            <button id="importMemories" class="btn-secondary">
+              <span class="btn-icon">📁</span>
+              Import
+            </button>
+            <button id="memorySlideshow" class="btn-secondary">
+              <span class="btn-icon">🎬</span>
+              Slideshow
+            </button>
+          </div>
+
+          <div class="memory-stats">
+            <div class="stat-card">
+              <span class="stat-number" id="totalMemories">0</span>
+              <span class="stat-label">Total Memories</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="thisMonth">0</span>
+              <span class="stat-label">This Month</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="favoriteMemories">0</span>
+              <span class="stat-label">Favorites</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="memoryStreak">0</span>
+              <span class="stat-label">Day Streak</span>
+            </div>
+          </div>
+
+          <div class="memory-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="favorites">❤️ Favorites</button>
+            <button class="filter-btn" data-filter="photos">📷 Photos</button>
+            <button class="filter-btn" data-filter="notes">📝 Notes</button>
+            <button class="filter-btn" data-filter="this-year">This Year</button>
+          </div>
+
+          <div class="memory-search">
+            <input type="text" id="memorySearch" placeholder="Search memories..." class="search-input">
+            <button id="searchBtn" class="search-btn">🔍</button>
+          </div>
+
+          <div class="memories-grid" id="memoriesGrid">
+            <!-- Memories will be loaded here -->
+          </div>
+
+          <div class="empty-memories hidden" id="emptyMemories">
+            <div class="empty-icon">📷</div>
+            <h3>No memories yet</h3>
+            <p>Start capturing your beautiful moments together!</p>
+            <button id="createFirstMemory" class="btn-primary">Create First Memory</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Enhanced Floating Action Button -->
+    <div class="fab-container">
+      <button id="fabMain" class="fab">
+        <span class="fab-icon">💖</span>
+      </button>
+      <div class="fab-menu hidden">
+        <button class="fab-item" data-action="quick-note">
+          <span class="fab-icon">📝</span>
+          <span class="fab-label">Quick Note</span>
+        </button>
+        <button class="fab-item" data-action="mood">
+          <span class="fab-icon">😊</span>
+          <span class="fab-label">Mood</span>
+        </button>
+        <button class="fab-item" data-action="camera">
+          <span class="fab-icon">📷</span>
+          <span class="fab-label">Camera</span>
+        </button>
+        <button class="fab-item" data-action="share">
+          <span class="fab-icon">📤</span>
+          <span class="fab-label">Share</span>
+        </button>
+        <button class="fab-item" data-action="settings">
+          <span class="fab-icon">⚙️</span>
+          <span class="fab-label">Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Enhanced Audio Controls -->
+    <div class="audio-controls">
+      <div class="music-player">
+        <button id="musicToggle" class="music-btn">
+          <span class="music-icon">🎵</span>
+        </button>
+        <div class="volume-control hidden">
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Modals -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <!-- Enhanced Memory Modal -->
+    <div id="memoryModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add New Memory</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="memoryForm">
+            <div class="form-group">
+              <label for="memoryTitle">Memory Title</label>
+              <input type="text" id="memoryTitle" placeholder="e.g., Our first date" required>
+            </div>
+            <div class="form-group">
+              <label for="memoryDescription">Description</label>
+              <textarea id="memoryDescription" placeholder="Tell the story..." rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="memoryDate">Date</label>
+              <input type="date" id="memoryDate">
+            </div>
+            <div class="form-group">
+              <label for="memoryLocation">Location (optional)</label>
+              <input type="text" id="memoryLocation" placeholder="Where did this happen?">
+            </div>
+            <div class="form-group">
+              <label for="memoryTags">Tags (optional)</label>
+              <input type="text" id="memoryTags" placeholder="e.g., romantic, funny, special">
+            </div>
+            <div class="form-group">
+              <label for="memoryPhoto">Photo (optional)</label>
+              <input type="file" id="memoryPhoto" accept="image/*" multiple>
+              <div id="photoPreview" class="photo-preview hidden"></div>
+            </div>
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="memoryFavorite">
+                <span class="checkmark"></span>
+                Mark as favorite
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="memoryPrivate">
+                <span class="checkmark"></span>
+                Keep private
+              </label>
+            </div>
+            <div class="modal-actions">
+              <button type="button" class="btn-secondary modal-cancel">Cancel</button>
+              <button type="submit" class="btn-primary">Save Memory</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Settings</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="settings-section">
+            <h4>Appearance</h4>
+            <div class="setting-item">
+              <label for="themeSelect">Theme</label>
+              <select id="themeSelect">
+                <option value="cosmic">Cosmic (Default)</option>
+                <option value="romantic">Romantic Pink</option>
+                <option value="nature">Nature Green</option>
+                <option value="sunset">Sunset Orange</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label class="checkbox-label">
+                <input type="checkbox" id="animationsEnabled" checked>
+                <span class="checkmark"></span>
+                Enable animations
+              </label>
+            </div>
+          </div>
+          
+          <div class="settings-section">
+            <h4>Notifications</h4>
+            <div class="setting-item">
+              <label class="checkbox-label">
+                <input type="checkbox" id="dailyReminders">
+                <span class="checkmark"></span>
+                Daily love reminders
+              </label>
+            </div>
+            <div class="setting-item">
+              <label class="checkbox-label">
+                <input type="checkbox" id="weeklyReports">
+                <span class="checkmark"></span>
+                Weekly love reports
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h4>Data</h4>
+            <div class="setting-item">
+              <button id="exportData" class="btn-secondary">📤 Export All Data</button>
+            </div>
+            <div class="setting-item">
+              <button id="importData" class="btn-secondary">📥 Import Data</button>
+              <input type="file" id="importFile" accept=".json" style="display: none;">
+            </div>
+            <div class="setting-item">
+              <button id="clearData" class="btn-danger">🗑️ Clear All Data</button>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn-primary modal-close">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other enhanced modals... -->
+    <div id="quickNoteModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Quick Love Note</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="quickNoteForm">
+            <div class="form-group">
+              <textarea id="quickNoteText" placeholder="Write a sweet message..." rows="4" required></textarea>
+            </div>
+            <div class="quick-templates">
+              <button type="button" class="template-btn" data-template="Good morning, my love! ☀️💕">Morning</button>
+              <button type="button" class="template-btn" data-template="Thinking of you... 💭❤️">Thinking</button>
+              <button type="button" class="template-btn" data-template="You make me smile! 😊✨">Smile</button>
+            </div>
+            <div class="modal-actions">
+              <button type="button" class="btn-secondary modal-cancel">Cancel</button>
+              <button type="submit" class="btn-primary">Send Note</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Toast Notifications -->
+  <div id="toastContainer" class="toast-container"></div>
+
+<!-- Load utilities first -->
+<script  type="module"src="js/utils/storage.js"></script>
+<script  type="module" src="js/utils/pwa.js"></script>
+
+<!-- Main app after dependencies -->
+<script type="module" src="js/app.js"></script>
+
+<!-- Service Worker Registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('SW registered');
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              document.getElementById('updatePrompt').classList.remove('hidden');
+            }
+          });
+        });
+      })
+      .catch(error => console.log('SW registration failed'));
+  });
+}
+</script>
+
+<!-- Background Music -->
+<audio id="backgroundMusic" preload="auto" loop>
+  <source src="music/your-song.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Enhanced Install Prompt -->
+<div id="installPrompt" class="install-prompt hidden">
+  <div class="install-content">
+    <div class="install-icon">📱</div>
+    <h3>Install Our Love App</h3>
+    <p>Add to your home screen for the best experience with offline access!</p>
+    <div class="install-features">
+      <div class="feature">🔒 Works offline</div>
+      <div class="feature">📱 Native app feel</div>
+      <div class="feature">🚀 Faster loading</div>
+    </div>
+    <div class="install-buttons">
+      <button id="installBtn" class="btn-primary">Install Now</button>
+      <button id="dismissInstall" class="btn-secondary">Maybe Later</button>
+    </div>
+  </div>
+</div>
+
+<!-- Update Available Notification -->
+<div id="updatePrompt" class="update-prompt hidden">
+  <div class="update-content">
+    <div class="update-icon">🔄</div>
+    <h3>Update Available</h3>
+    <p>A new version of our love app is ready!</p>
+    <div class="update-buttons">
+      <button id="updateBtn" class="btn-primary">Update Now</button>
+      <button id="dismissUpdate" class="btn-secondary">Later</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audio Controls -->
+<div class="audio-controls">
+  <div class="music-player">
+    <button id="musicToggle" class="music-btn">
+      <span class="music-icon">🎵</span>
+    </button>
+    <div class="volume-control hidden">
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.3">
+    </div>
+  </div>
+</div>
+</body>
+</html>

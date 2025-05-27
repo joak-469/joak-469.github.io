@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Love Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>How Well Do You Know Us?</h2>
+  <form id="quizForm">
+    <!-- Questions here -->
+    <!-- See earlier example, with cosmic styling -->
+  </form>
+  <div id="resultBox" class="result" style="display:none;"></div>
+  <script>
+document.getElementById('quizForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let score = 0;
+
+  // Example: Check answers
+  const q1 = document.querySelector('input[name="q1"]:checked');
+  if (q1 && q1.value === 'correct') score++;
+
+  // Show result
+  const resultBox = document.getElementById('resultBox');
+  resultBox.style.display = 'block';
+  resultBox.textContent = `You scored ${score}/4!`;
+
+  sendWhatsApp(score);
+});
+
+function sendWhatsApp(score) {
+  const message = encodeURIComponent(`I scored ${score}/4 in our love quiz! 😇`);
+  window.open(`https://wa.me/YOURNUMBER?text= ${message}`, '_blank');
+}
+  </script>
+</body>
+</html>
