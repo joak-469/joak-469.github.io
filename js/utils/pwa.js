@@ -6,7 +6,6 @@ export class PWAManager {
   }
 
   init() {
-    this.setupInstallPrompt();
     this.setupUpdateHandler();
     this.setupPushNotifications();
     this.checkInstallStatus();
