@@ -604,3 +604,43 @@ document.addEventListener("visibilitychange", () => {
 
 );
 
+// Ensure music plays after user interaction
+document.addEventListener('DOMContentLoaded', () => {
+  const musicToggle = document.getElementById('musicToggle');
+  const backgroundMusic = document.getElementById('backgroundMusic');
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted) {
+      backgroundMusic.volume = 0.3;
+      backgroundMusic.play().catch(() => {});
+      musicStarted = true;
+    }
+  }
+
+  // Play music on first user gesture
+  ['click', 'touchstart'].forEach(evt => {
+    document.body.addEventListener(evt, startMusic, { once: true });
+  });
+
+  // Toggle music on button
+  if (musicToggle) {
+    musicToggle.addEventListener('click', () => {
+      if (backgroundMusic.paused) {
+        backgroundMusic.play();
+      } else {
+        backgroundMusic.pause();
+      }
+    });
+  }
+});
+function isInstagramBrowser() {
+  return navigator.userAgent.includes('Instagram');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (isInstagramBrowser()) {
+    // Show a custom message/banner
+    alert('For the best experience and to install this app, please open in your browser (Chrome/Safari). Instagram in-app browser does not support installation.');
+  }
+});
