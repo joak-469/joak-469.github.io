@@ -39,7 +39,7 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Activate event - clean up old caches
+// Activate event - clean up old caches and take control immediately
 self.addEventListener("activate", (event) => {
   console.log("Service Worker: Activating...");
 
@@ -58,9 +58,27 @@ self.addEventListener("activate", (event) => {
       })
       .then(() => {
         console.log("Service Worker: Activation complete");
+        // Take control of all clients immediately
         return self.clients.claim();
       })
   );
+});
+
+// Listen for SKIP_WAITING message to activate new SW immediately
+self.addEventListener("message", (event) => {
+  console.log("Service Worker: Message received", event.data);
+
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+
+  if (event.data && event.data.type === "CACHE_URLS") {
+    event.waitUntil(
+      caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
+        return cache.addAll(event.data.payload);
+      })
+    );
+  }
 });
 
 // Fetch event - serve from cache, fallback to network
@@ -170,22 +188,7 @@ self.addEventListener("notificationclick", (event) => {
   }
 });
 
-// Message handler for communication with main thread
-self.addEventListener("message", (event) => {
-  console.log("Service Worker: Message received", event.data);
 
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-
-  if (event.data && event.data.type === "CACHE_URLS") {
-    event.waitUntil(
-      caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
-        return cache.addAll(event.data.payload);
-      })
-    );
-  }
-});
 
 // Helper functions for background sync
 async function syncConfessions() {
