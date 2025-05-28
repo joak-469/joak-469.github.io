@@ -74,11 +74,6 @@ export class CosmicLoveApp {
     window.addEventListener("online", () => this.handleOnlineStatus(true));
     window.addEventListener("offline", () => this.handleOnlineStatus(false));
 
-    // Music toggle
-    const musicToggle = document.getElementById("musicToggle");
-    if (musicToggle) {
-      musicToggle.addEventListener("click", () => this.toggleMusic());
-    }
 
     // Theme toggle
     const themeToggle = document.getElementById("themeToggle");
@@ -396,19 +391,30 @@ export class CosmicLoveApp {
     this.showToast(`Switched to ${nextTheme} theme! 🎨`, "success");
   }
 
-  // Music functionality
-  toggleMusic() {
-    const musicBtn = document.getElementById("musicToggle");
-    const musicIcon = musicBtn.querySelector(".music-icon");
+toggleMusic() {
+  const backgroundMusic = this.backgroundMusic;
+  const musicBtn = document.getElementById("musicToggle");
+  const musicIcon = musicBtn ? musicBtn.querySelector(".music-icon") : null;
 
-    if (musicIcon.textContent === "🎵") {
-      musicIcon.textContent = "🔇";
-      this.showToast("Music paused 🎵", "info");
-    } else {
-      musicIcon.textContent = "🎵";
-      this.showToast("Music playing 🎶", "success");
-    }
+  if (!backgroundMusic) {
+    console.warn("No backgroundMusic element found!");
+    return;
   }
+
+  if (backgroundMusic.paused) {
+    backgroundMusic.play().then(() => {
+      if (musicIcon) musicIcon.textContent = "🎵";
+      this.showToast("Music playing 🎶", "success");
+    }).catch((err) => {
+      this.showToast("Tap again to start the music.", "info");
+      console.warn("Music play failed:", err);
+    });
+  } else {
+    backgroundMusic.pause();
+    if (musicIcon) musicIcon.textContent = "🔇";
+    this.showToast("Music paused 🎵", "info");
+  }
+}
 
   // Online/Offline functionality
   handleOnlineStatus(isOnline) {
@@ -468,12 +474,18 @@ setupAudioControls() {
   const volumeSlider = document.getElementById("volumeSlider");
   const backgroundMusic = this.backgroundMusic;
 
+  // Debug log
+  console.log("setupAudioControls: backgroundMusic:", backgroundMusic);
+
   // Play music on first user gesture
   const enableMusic = () => {
-    if (backgroundMusic.paused) {
+    if (backgroundMusic && backgroundMusic.paused) {
       backgroundMusic.volume = volumeSlider?.value || 0.3;
-      backgroundMusic.play().catch(() => {
+      backgroundMusic.play().then(() => {
+        console.log("Music started by user gesture!");
+      }).catch((err) => {
         this.showToast("Tap again to start the music.", "info");
+        console.warn("Music play failed:", err);
       });
     }
     document.body.removeEventListener("click", enableMusic);
@@ -484,17 +496,7 @@ setupAudioControls() {
 
   // Toggle music on button
   if (musicToggle) {
-    musicToggle.addEventListener("click", () => {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
-        musicToggle.innerHTML = '<span class="music-icon">🎵</span>';
-        this.showToast("Music playing 🎶", "success");
-      } else {
-        backgroundMusic.pause();
-        musicToggle.innerHTML = '<span class="music-icon">🔇</span>';
-        this.showToast("Music paused 🎵", "info");
-      }
-    });
+    musicToggle.addEventListener("click", () => this.toggleMusic());
   }
 
   // Volume control
@@ -504,7 +506,6 @@ setupAudioControls() {
     });
   }
 }
-
 
   // Placeholder methods for page-specific functionality
   loadQuizData() { /* Implemented in quiz.js */ }
