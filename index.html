@@ -58,6 +58,7 @@
   gtag('config', 'G-BFXH1QHJ57');
 </script>
 </head>
+
 <body>
   <!-- Enhanced Loading Screen -->
   <div id="loadingScreen" class="loading-screen">
@@ -133,27 +134,27 @@
     <!-- Enhanced Navigation with haptic feedback -->
     <nav class="main-nav">
       <div class="nav-container">
-        <a href="#home" class="nav-item active" data-page="home">
+        <a href="#home" class="nav-item active" data-page="home" aria-label="Home" tabindex="0">
           <span class="nav-icon">🏠</span>
           <span class="nav-text">Home</span>
           <span class="nav-badge hidden" id="homeBadge">0</span>
         </a>
-        <a href="#quiz" class="nav-item" data-page="quiz">
+        <a href="#quiz" class="nav-item" data-page="quiz" aria-label="Home" tabindex="0">
           <span class="nav-icon">💕</span>
           <span class="nav-text">Quiz</span>
           <span class="nav-badge hidden" id="quizBadge">0</span>
         </a>
-        <a href="#confess" class="nav-item" data-page="confess">
+        <a href="#confess" class="nav-item" data-page="confess" aria-label="Home" tabindex="0">
           <span class="nav-icon">💭</span>
           <span class="nav-text">Confess</span>
           <span class="nav-badge hidden" id="confessBadge">0</span>
         </a>
-        <a href="#dreams" class="nav-item" data-page="dreams">
+        <a href="#dreams" class="nav-item" data-page="dreams" aria-label="Home" tabindex="0">
           <span class="nav-icon">🌌</span>
           <span class="nav-text">Dreams</span>
           <span class="nav-badge hidden" id="dreamsBadge">0</span>
         </a>
-        <a href="#memories" class="nav-item" data-page="memories">
+        <a href="#memories" class="nav-item" data-page="memories" aria-label="Home" tabindex="0">
           <span class="nav-icon">📸</span>
           <span class="nav-text">Memories</span>
           <span class="nav-badge hidden" id="memoriesBadge">0</span>
@@ -803,7 +804,7 @@
       </section>
     </main>
 
-    <!-- Enhanced Floating Action Button -->
+    <!-- Place the Back to Top button inside the fab-container for perfect alignment -->
     <div class="fab-container">
       <button id="fabMain" class="fab">
         <span class="fab-icon">💖</span>
@@ -830,8 +831,8 @@
           <span class="fab-label">Settings</span>
         </button>
       </div>
+      <button id="backToTop" class="fab" aria-label="Back to top" style="display:none;z-index:1200;position:absolute;right:0;bottom:70px;">⬆️</button>
     </div>
-
     <!-- Enhanced Audio Controls -->
     <div class="audio-controls">
       <div class="music-player">
@@ -1009,20 +1010,27 @@
 <!-- Service Worker Registration -->
 <script>
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(registration => {
-        console.log('SW registered');
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing;
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              document.getElementById('updatePrompt').classList.remove('hidden');
-            }
-          });
-        });
-      })
-      .catch(error => console.log('SW registration failed'));
+  // Listen for update prompt button
+  document.addEventListener('DOMContentLoaded', function () {
+    const updateBtn = document.getElementById('updateBtn');
+    if (updateBtn) {
+      updateBtn.addEventListener('click', async function () {
+        // Unregister all service workers
+        if (navigator.serviceWorker) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const reg of regs) {
+            await reg.unregister();
+          }
+        }
+        // Delete all caches
+        if (window.caches) {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map(name => caches.delete(name)));
+        }
+        // Reload page to get fresh assets
+        window.location.reload(true);
+      });
+    }
   });
 }
 </script>

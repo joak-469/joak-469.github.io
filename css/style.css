@@ -2308,3 +2308,100 @@ select:focus,
     padding-top: 2rem;
   }
 }
+
+.fab-container {
+  right: 16px;
+  bottom: 16px;
+}
+@media (max-width: 600px) {
+  .fab-container {
+    right: 10px;
+    bottom: 10px;
+    z-index: 1100;
+  }
+  .fab {
+    width: 64px;
+    height: 64px;
+    font-size: 2rem;
+  }
+}
+
+.btn-primary, .btn-secondary, .action-card, .fab, .fab-item {
+  min-height: 48px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  padding: 1rem 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .modal {
+    width: 98vw;
+    max-width: 98vw;
+    left: 1vw;
+    right: 1vw;
+    padding: 0;
+  }
+  .modal-content {
+    padding: 0.5rem;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+.nav-item, .btn-primary, .btn-secondary, .fab, .fab-item {
+  outline: none;
+}
+.nav-item:focus-visible, .btn-primary:focus-visible, .btn-secondary:focus-visible, .fab:focus-visible, .fab-item:focus-visible {
+  outline: 2px solid var(--accent-color);
+}
+
+@media (max-width: 600px) {
+  .quick-actions, .stats-grid, .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-content {
+    padding: 0.5rem;
+  }
+  .header {
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #backToTop.fab,
+  .fab {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.2rem !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+  }
+  .fab-container {
+    right: 8px !important;
+    bottom: 8px !important;
+  }
+  .fab-menu {
+    bottom: 54px !important;
+  }
+  .fab-item {
+    font-size: 1rem !important;
+    padding: 0.5rem 1rem !important;
+    min-height: 40px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .fab-container {
+    right: 8px !important;
+    bottom: 8px !important;
+    gap: 8px !important; /* Reduce gap between floating buttons on mobile */
+  }
+  #backToTop.fab {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.2rem !important;
+    bottom: 46px !important; /* Adjust to match reduced gap */
+  }
+}
