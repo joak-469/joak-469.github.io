@@ -524,13 +524,21 @@ setupAudioControls() {
   openSettings() { /* To be implemented */ }
 }
 
+function isInstagramBrowser() {
+  return navigator.userAgent.includes('Instagram');
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  if (isInstagramBrowser()) {
+    alert('For the best experience and to install this app, please open in your browser (Chrome/Safari). Instagram in-app browser does not support installation.');
+  }
   try {
     window.app = new CosmicLoveApp();
   } catch (e) {
     console.error('Failed to create app:', e);
   }
 });
+
 
 // Handle app state changes
 document.addEventListener("visibilitychange", () => {
@@ -544,14 +552,3 @@ document.addEventListener("visibilitychange", () => {
 
 
 );
-
-function isInstagramBrowser() {
-  return navigator.userAgent.includes('Instagram');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  if (isInstagramBrowser()) {
-    // Show a custom message/banner
-    alert('For the best experience and to install this app, please open in your browser (Chrome/Safari). Instagram in-app browser does not support installation.');
-  }
-});
