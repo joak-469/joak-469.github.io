@@ -462,20 +462,37 @@ export class CosmicLoveApp {
       });
     }
   }
+
 setupAudioControls() {
   const musicToggle = document.getElementById("musicToggle");
   const volumeSlider = document.getElementById("volumeSlider");
   const backgroundMusic = this.backgroundMusic;
 
-  // Mute toggle
+  // Play music on first user gesture
+  const enableMusic = () => {
+    if (backgroundMusic.paused) {
+      backgroundMusic.volume = volumeSlider?.value || 0.3;
+      backgroundMusic.play().catch(() => {
+        this.showToast("Tap again to start the music.", "info");
+      });
+    }
+    document.body.removeEventListener("click", enableMusic);
+    document.body.removeEventListener("touchstart", enableMusic);
+  };
+  document.body.addEventListener("click", enableMusic);
+  document.body.addEventListener("touchstart", enableMusic, { passive: true });
+
+  // Toggle music on button
   if (musicToggle) {
     musicToggle.addEventListener("click", () => {
-      if (backgroundMusic.muted) {
-        backgroundMusic.muted = false;
+      if (backgroundMusic.paused) {
+        backgroundMusic.play();
         musicToggle.innerHTML = '<span class="music-icon">🎵</span>';
+        this.showToast("Music playing 🎶", "success");
       } else {
-        backgroundMusic.muted = true;
+        backgroundMusic.pause();
         musicToggle.innerHTML = '<span class="music-icon">🔇</span>';
+        this.showToast("Music paused 🎵", "info");
       }
     });
   }
@@ -486,83 +503,6 @@ setupAudioControls() {
       backgroundMusic.volume = volumeSlider.value;
     });
   }
-
-  // Play music on first user interaction
-  const enableMusic = () => {
-    backgroundMusic.volume = volumeSlider?.value || 0.3;
-
-    backgroundMusic.play().catch(e => {
-      console.warn("Auto-play failed:", e);
-      // Optional: Show toast message if autoplay fails
-      this.showToast("Tap again to start the music.", "info");
-    });
-
-    // Remove event listeners once played
-    document.body.removeEventListener("click", enableMusic);
-    document.body.removeEventListener("touchstart", enableMusic);
-  };
-
-  // Add event listeners to trigger music play
-  document.body.addEventListener("click", enableMusic);
-  document.body.addEventListener("touchstart", enableMusic, { passive: true });
-}
-  // Toast notifications
-  showToast(message, type = "info", duration = 3000) {
-    const container = document.getElementById("toastContainer");
-    const toast = document.createElement("div");
-
-    toast.className = `toast ${type}`;
-    toast.textContent = message;
-
-    container.appendChild(toast);
-
-    // Remove toast after duration
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transform = "translateX(100%)";
-      setTimeout(() => {
-        if (toast.parentNode) {
-          toast.parentNode.removeChild(toast);
-        }
-      }, 300);
-    }, duration);
-  }
-
-  setupAudioControls() {
-  const musicToggle = document.getElementById("musicToggle");
-  const volumeSlider = document.getElementById("volumeSlider");
-  const backgroundMusic = this.backgroundMusic;
-
-  // Play on first interaction
-  const enableMusic = () => {
-    backgroundMusic.volume = volumeSlider.value;
-    backgroundMusic.play().catch(e => {
-      console.warn("Auto-play failed:", e);
-    });
-
-    // Remove listeners after first play
-    document.body.removeEventListener("click", enableMusic);
-    document.body.removeEventListener("touchstart", enableMusic);
-  };
-
-  document.body.addEventListener("click", enableMusic);
-  document.body.addEventListener("touchstart", enableMusic);
-
-  // Mute toggle
-  musicToggle.addEventListener("click", () => {
-    if (backgroundMusic.muted) {
-      backgroundMusic.muted = false;
-      musicToggle.innerHTML = '<span class="music-icon">🎵</span>';
-    } else {
-      backgroundMusic.muted = true;
-      musicToggle.innerHTML = '<span class="music-icon">🔇</span>';
-    }
-  });
-
-  // Volume control
-  volumeSlider.addEventListener("input", () => {
-    backgroundMusic.volume = volumeSlider.value;
-  });
 }
 
 
