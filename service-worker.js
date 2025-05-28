@@ -14,6 +14,7 @@ const STATIC_ASSETS = [
   "/js/utils/pwa.js",
   "/js/components/quiz.js",
   "/manifest.json",
+  "/music/your-song.ogg",
   "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap"
 ];
 
