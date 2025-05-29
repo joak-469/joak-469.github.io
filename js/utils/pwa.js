@@ -123,3 +123,17 @@ export class PWAManager {
     }
   }
 }
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistration().then(function(reg) {
+    if (reg && reg.waiting) {
+      // There is a waiting SW: send SKIP_WAITING
+      reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+
+      // Listen for the new SW to take control, then reload
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        window.location.reload();
+      });
+    }
+  });
+}
