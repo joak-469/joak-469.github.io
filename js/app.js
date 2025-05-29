@@ -489,10 +489,8 @@ setupAudioControls() {
       });
     }
     document.body.removeEventListener("click", enableMusic);
-    document.body.removeEventListener("touchstart", enableMusic);
   };
   document.body.addEventListener("click", enableMusic);
-  document.body.addEventListener("touchstart", enableMusic, { passive: true });
 
   // Toggle music on button
   if (musicToggle) {
