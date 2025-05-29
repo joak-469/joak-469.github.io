@@ -1035,7 +1035,7 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-<audio id="backgroundMusic" preload="auto" loop autoplay>
+<audio id="backgroundMusic" preload="auto" loop>
   <source src="music/your-song.ogg" type="audio/ogg">
 </audio>
 
@@ -1081,5 +1081,45 @@ if ('serviceWorker' in navigator) {
     </div>
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const musicToggle = document.getElementById('musicToggle');
+  const audio = document.getElementById('backgroundMusic');
+  const musicIcon = musicToggle ? musicToggle.querySelector('.music-icon') : null;
+
+  // Ensure audio is not muted and set volume
+  if (audio) {
+    audio.muted = false;
+    audio.volume = 0.3;
+  }
+
+  // Play/pause on button click
+  if (musicToggle && audio) {
+    musicToggle.addEventListener('click', function() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          if (musicIcon) musicIcon.textContent = "🎵";
+        }).catch(() => {
+          alert('Tap again to start the music. Some browsers require a second tap.');
+        });
+      } else {
+        audio.pause();
+        if (musicIcon) musicIcon.textContent = "🔇";
+      }
+    });
+  }
+
+  // Also enable music on first user gesture anywhere (for strict browsers)
+  const enableMusic = () => {
+    if (audio && audio.paused) {
+      audio.play().catch(() => {});
+    }
+    document.body.removeEventListener('click', enableMusic);
+    document.body.removeEventListener('touchstart', enableMusic);
+  };
+  document.body.addEventListener('click', enableMusic);
+  document.body.addEventListener('touchstart', enableMusic, { passive: true });
+});
+</script>
 </body>
 </html>
